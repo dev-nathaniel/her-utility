@@ -30,7 +30,7 @@ export default function TabLayout() {
         tabBarStyle: {backgroundColor: Colors.light.white}
       }}>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Tab One',
           tabBarIcon: ({ color, focused }) => <HomeIcon type={focused ? 'primary': 'secondary'} />,

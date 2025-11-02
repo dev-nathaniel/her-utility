@@ -15,7 +15,7 @@ export default function success() {
             <Text style={{color: '#4F4F4F', fontSize: 16, textAlign: 'center'}}>Your quote request has been submitted successfully</Text>
         </View>
       <View style={{ width: '100%', paddingHorizontal: 16, gap: 16 }}>
-        <Link href="/(tabs)" replace asChild>
+        <Link href="/(tabs)/home" replace asChild>
           <TouchableOpacity>
             <View style={{ backgroundColor: Colors.light.tint, borderRadius: 70, paddingVertical: 18, justifyContent: 'center', alignItems: 'center' }}>
               <Text style={{ fontWeight: '600', fontSize: 24, color: Colors.light.white }}>Go Home</Text>

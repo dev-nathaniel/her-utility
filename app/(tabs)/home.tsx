@@ -94,16 +94,16 @@ export default function TabOneScreen() {
         <View style={{ marginTop: 20 }}>
           <Text style={{ fontSize: 16 }}>Select a location</Text>
         </View>
-        <BottomSheetFlatList
+        <BottomSheetFlatList<{ id: string; location: string }>
           style={{ marginTop: 20, flex: 1 }}
           contentContainerStyle={{ paddingBottom: 20 }} // don't use flex or gap here
           nestedScrollEnabled={true}
           data={[{ id: '1', location: 'London Office' }, { id: '2', location: 'New York Office' }, { id: '3', location: 'San Francisco Office' }, { id: '4', location: 'Berlin Office' }, { id: '5', location: 'Tokyo Office' }, { id: '6', location: 'Sydney Office' }, { id: '7', location: 'Toronto Office' }, { id: '8', location: 'Paris Office' }, { id: '9', location: 'Dubai Office' }]}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item: any) => item.id}
           ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
-          renderItem={({ item }) => (
+          renderItem={({ item }: { item: { id: string; location: string } }) => (
             <TouchableOpacity onPress={()=>handleLocationSelect(item.location)} style={{ padding: 16, paddingVertical: 20, borderRadius: 20, backgroundColor: '#EDEEF0', flexDirection: 'row', gap: 16, borderWidth: item.location === location ? 2 : 0, borderColor: Colors.light.tint, alignItems: 'center' }}>
-              <View style={{ width: 20, height: 20, borderWidth: item.location === location ? 4 : 2, borderColor: Colors.light.tint, borderRadius: 20, backgroundColor: item.location === location ? '#fff' : null }}></View>
+              <View style={{ width: 20, height: 20, borderWidth: item.location === location ? 4 : 2, borderColor: Colors.light.tint, borderRadius: 20, backgroundColor: item.location === location ? '#fff' : undefined }}></View>
               <Text style={{ fontSize: 16, fontWeight: '400' }}>{item.location}</Text>
             </TouchableOpacity>
           )}
