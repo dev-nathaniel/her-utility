@@ -8,12 +8,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function success() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, paddingHorizontal: 16}}>
-            <Image source={require('@/assets/images/lightbulb.png')} />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, paddingHorizontal: 16 }}>
+        <Image source={require('@/assets/images/lightbulb.png')} />
 
-            <Text style={{fontSize: 32}}>All done! We're on it</Text>
-            <Text style={{color: '#4F4F4F', fontSize: 16, textAlign: 'center'}}>Your quote request has been submitted successfully</Text>
-        </View>
+        <Text style={{ fontSize: 32, textAlign: 'center' }}>All done! We're on it</Text>
+        <Text style={{ color: '#4F4F4F', fontSize: 16, textAlign: 'center' }}>Your quote request has been submitted successfully</Text>
+      </View>
       <View style={{ width: '100%', paddingHorizontal: 16, gap: 16 }}>
         <Link href="/(tabs)/home" replace asChild>
           <TouchableOpacity>

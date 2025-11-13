@@ -15,8 +15,17 @@ function TabBarIcon(props: {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
+//token gets stored
+//token expires
+//token tries to get refreshed
+//token refresh fails it's after 7 days
+//you need to log out the user by removing the token
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  // const {userId} = useUser()
+
+  // if (!userId) return <Redirect href="/(auth)/login" />
 
   return (
     <Tabs

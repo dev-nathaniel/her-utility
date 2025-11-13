@@ -1,3 +1,4 @@
+import { siteType } from '@/app/(tabs)/home'
 import ArrowDown from '@/assets/icons/ArrowDown'
 import LocationIcon01 from '@/assets/icons/LocationIcon01'
 import React from 'react'
@@ -5,7 +6,7 @@ import { Text, TouchableOpacity, View } from 'react-native'
 
 type LocationWidgetProps = {
     onPress?: () => void;
-    location: string;
+    location: siteType;
 }
 
 const LocationWidget = ({onPress, location}: LocationWidgetProps) => {
@@ -16,7 +17,7 @@ const LocationWidget = ({onPress, location}: LocationWidgetProps) => {
         <LocationIcon01 type='primary' />
         <View style={{gap: 2}}>
             <Text style={{fontWeight: '500', fontSize: 16, color: '#6B6B6B'}}>Current Location</Text>
-            <Text style={{fontWeight: '600', fontSize: 20}}>{location}</Text>
+            <Text style={{fontWeight: '600', fontSize: 20}}>{location.name}</Text>
         </View>
       </View>
 
