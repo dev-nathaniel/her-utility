@@ -3,7 +3,9 @@ import axios from 'axios'
 import { router } from 'expo-router'
 
 const api = axios.create({
-    baseURL: 'https://her-utility-server.onrender.com/api'
+    // baseURL: 'https://her-utility-server1.pxxl.click/api'
+    baseURL: 'https://her-utility.nw.r.appspot.com/api'
+    // baseURL: 'https://her-utility-server.onrender.com/api'
 })
 
 let isRefreshing = false

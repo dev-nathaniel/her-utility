@@ -16,6 +16,7 @@ import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persi
 import { focusManager, QueryClient } from "@tanstack/react-query";
 import { PersistQueryClientProvider, removeOldestQuery } from '@tanstack/react-query-persist-client';
 import { AppStateStatus, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
 import Toast from 'react-native-toast-message';
 
 
@@ -212,9 +213,11 @@ export default function RootLayout() {
 
   return (
     <PersistQueryClientProvider client={queryClient} persistOptions={{ persister: asyncStoragePersister }}>
+      <PaperProvider>
       <GestureHandlerRootView>
         <RootLayoutNav />
       </GestureHandlerRootView>
+      </PaperProvider>
       <Toast />
     </PersistQueryClientProvider>
 
@@ -231,6 +234,7 @@ function RootLayoutNav() {
         {/* <Stack.Screen name='(onboarding)' options={{ headerShown: false }} /> */}
         <Stack.Screen name='(auth)' options={{ headerShown: false }} />
         <Stack.Screen name='(registerBusiness)' options={{ headerShown: false }} />
+        <Stack.Screen name='(businesses)' options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(quoteForm)" options={{ headerShown: false }} />
         <Stack.Screen name="utility" options={{ headerShown: false }} />

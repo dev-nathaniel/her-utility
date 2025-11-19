@@ -1,9 +1,11 @@
+import { useOnboarding } from '@/hooks/useOnboarding'
+import useUser from '@/hooks/useUser'
 import { Stack } from 'expo-router'
 import React from 'react'
 
 export default function AuthLayout() {
-  // const {userId} = useUser()
-  // const {seenOnboarding} = useOnboarding()
+  const {userId} = useUser()
+  const {seenOnboarding} = useOnboarding()
 
   // if (seenOnboarding === null) return null
 

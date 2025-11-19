@@ -43,6 +43,8 @@ console.log(userId, 'USER ID')
     // invalidate cached user and site queries so the UI refreshes
     queryClient.invalidateQueries({ queryKey: ['user'] })
     queryClient.invalidateQueries({ queryKey: ['site'] })
+    queryClient.invalidateQueries({ queryKey: ['sites'] })
+    queryClient.invalidateQueries({ queryKey: ['businesses'] })
       router.push('/(tabs)/home')  
     },
     onError: (err) => {
@@ -92,7 +94,7 @@ console.log(userId, 'USER ID')
             <Text style={{ fontSize: 22, color: '#6B6B6B' }}>Enter your business information</Text>
           </View>
 
-          <View style={{ marginVertical: 40, }}>
+          <View style={{ marginVertical: 40, gap: 16}}>
             <Controller control={control} name="name" render={({ field: { onChange, value } }) => (
               <CustomInput
                 error={errors.name}

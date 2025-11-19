@@ -98,7 +98,8 @@ const Profile = () => {
     {
       icon: <LicenseDraftIcon />,
       title: 'Businesses',
-      onPress: () => handleOpenBusinessSheet()
+      onPress: () => router.push('/(businesses)/businesses')
+      // onPress: () => handleOpenBusinessSheet()
     },
     {
       icon: <LogoutSquareIcon />,
@@ -117,17 +118,17 @@ const Profile = () => {
   })
 
   // derive businesses from user data or fall back to a placeholder to avoid crashes
-  const businesses = (user as any)?.user?.businesses ?? [
-    // placeholder example structure
-    {
-      id: 'b_example',
-      name: 'Example Business Ltd',
-      sites: [
-        { id: 's_example_1', name: 'Main Office' },
-        { id: 's_example_2', name: 'Warehouse' }
-      ]
-    }
-  ]
+  // const businesses = (user as any)?.user?.businesses ?? [
+  //   // placeholder example structure
+  //   {
+  //     id: 'b_example',
+  //     name: 'Example Business Ltd',
+  //     sites: [
+  //       { id: 's_example_1', name: 'Main Office' },
+  //       { id: 's_example_2', name: 'Warehouse' }
+  //     ]
+  //   }
+  // ]
   return (
     <>
       <SafeAreaView style={{ flex: 1, paddingHorizontal: 16, backgroundColor: '#EDEEF0' }} edges={['top', 'left', 'right']}>
@@ -184,7 +185,7 @@ const Profile = () => {
 
 
       {/* Businesses bottom sheet (new) */}
-      <BottomSheet enablePanDownToClose index={-1} style={{ paddingHorizontal: 16 }} ref={businessSheetRef} onChange={handleSheetChanges}>
+      {/* <BottomSheet enablePanDownToClose index={-1} style={{ paddingHorizontal: 16 }} ref={businessSheetRef} onChange={handleSheetChanges}>
         <BottomSheetView style={{ marginTop: 20, paddingBottom: 40 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 20, fontWeight: '600' }}>Businesses & Sites</Text>
@@ -235,7 +236,7 @@ const Profile = () => {
             </TouchableOpacity>
           </View>
         </BottomSheetView>
-      </BottomSheet>
+      </BottomSheet> */}
     </>
   )
 }

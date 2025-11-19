@@ -90,7 +90,7 @@ export default function Register() {
             <Text style={{ fontSize: 22, color: '#6B6B6B' }}>Let’s get your business setup</Text>
           </View>
 
-          <View style={{ marginVertical: 40 }}>
+          <View style={{ marginVertical: 40, gap: 24 }}>
             <Controller control={control} name='fullname' render={({ field: { onChange, onBlur, value } }) => (
               <CustomInput error={errors.fullname} {...register("fullname")} value={value} onChangeText={onChange} icon={<UserIcon type='secondary' />} placeholder='John Doe' title='Full Name' />
             )}>

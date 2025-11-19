@@ -6,6 +6,7 @@ import HomeIcon from '@/assets/icons/HomeIcon';
 import UserIcon from '@/assets/icons/UserIcon';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
+import useUser from '@/hooks/useUser';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -23,7 +24,7 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  // const {userId} = useUser()
+  const {userId} = useUser()
 
   // if (!userId) return <Redirect href="/(auth)/login" />
 

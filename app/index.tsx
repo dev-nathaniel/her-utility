@@ -66,7 +66,15 @@ import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 export default function Onboarding() {
-  const {completeOnboarding} = useOnboarding()
+  const {completeOnboarding, seenOnboarding, loading} = useOnboarding()
+
+//   useEffect(() => {
+// if (!loading && seenOnboarding) {
+//     console.log(seenOnboarding, 'seenonboarding')
+//     router.replace('/(auth)/login')
+//   }
+//   }, [loading, seenOnboarding])
+  
   return (
     <LinearGradient style={{flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16}} colors={['#A9B5FF', '#5D72F0']}>
       <View>

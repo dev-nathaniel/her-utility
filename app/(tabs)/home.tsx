@@ -16,13 +16,15 @@ import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { MemberType } from '../(businesses)/business';
+import { Business } from '../(businesses)/businesses';
 
 export type siteType = {
  _id: string, 
  address: string, 
- business: any, 
+ business: Business, 
  createdAt: string, 
- members: any[], 
+ members: MemberType[], 
  name: string, 
  updatedAt: string, 
  utilities: any[]
@@ -41,7 +43,7 @@ export default function TabOneScreen() {
     staleTime: 1000 * 60 * 5,
   })
   //state
-  const [location, setLocation] = useState<siteType | undefined>(sites?.sites?.[0]);
+  const [location, setLocation] = useState<siteType | undefined>();
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 console.log(location, 'location')
@@ -81,7 +83,7 @@ useEffect(() => {
   // Fetch details for the currently selected location
   // - keyed by ['site', location] so switching location refetches detail
   // - enabled only when we have a location and the sites list (so we can map location -> id if needed)
-  const { data: siteDetails, isLoading: isSiteLoading, isError: isSiteError, error: siteError, refetch: refetchSite } = useQuery({
+  const { data: siteDetails, isLoading: isSiteLoading, isError: isSiteError, error: siteError, refetch: refetchSite } = useQuery<{site: siteType}>({
     queryKey: ['site', location?._id],
     queryFn: () => {
       // If your API expects a site id, map location -> site id using `sites`.
@@ -138,7 +140,7 @@ useEffect(() => {
           {sites?.sites.length > 0 && location ? <LocationWidget location={location} onPress={handleOpenLocationSheet} /> : null}
 
           <View style={{ marginTop: 16, flexDirection: 'row', gap: 10, flexWrap: 'wrap' }}>
-            {siteDetails ? 
+            {siteDetails && siteDetails.site && siteDetails.site.utilities && siteDetails.site.utilities.length > 0 ? 
             <><Link asChild href='/utility'>
               <TouchableOpacity>
 
@@ -151,7 +153,9 @@ useEffect(() => {
                 <UtilityWidget utility='Electricity' icon={<ElectricHomeIcon type='custom' color={Colors.light.white} />} />
               </TouchableOpacity>
             </Link>
-            </> : null}
+            </> 
+             : null} 
+             
             {/* if no business either toast or navigate to create business first */}
             {/* <Link asChild href='/(quoteForm)/getQuote1'> */}
               <TouchableOpacity onPress={addUtility}>
@@ -167,7 +171,7 @@ useEffect(() => {
                 <Text style={{ fontWeight: '400', fontSize: 32, color: Colors.light.white }}>0</Text>
               </View>
             </View>
-
+              {/* Bills for every Organisation */}
             {/* <View style={{ gap: 14 }}>
               <Bill amount={200} bill='Electricity' details='MPAN: 12345678910' dueDate='3 days' color='#C83C9220' icon={<ElectricHomeIcon type='custom' color={Colors.light.pink} />} />
               <Bill amount={200} bill='Gas' details='MPRN: 12345678910' dueDate='3 days' color='#00D44420' icon={<GasPipeIcon type='custom' color={'#00D444'} />} />
@@ -194,9 +198,13 @@ useEffect(() => {
               <>
             <TouchableOpacity onPress={() => handleLocationSelect(item)} style={{ padding: 16, paddingVertical: 20, borderRadius: 20, backgroundColor: '#EDEEF0', flexDirection: 'row', gap: 16, borderWidth: item === location ? 2 : 0, borderColor: Colors.light.tint, alignItems: 'center' }}>
               <View style={{ width: 20, height: 20, borderWidth: item === location ? 4 : 2, borderColor: Colors.light.tint, borderRadius: 20, backgroundColor: item === location ? '#fff' : undefined }}></View>
+              <View>
               <Text style={{ fontSize: 16, fontWeight: '400' }}>{item.name}</Text>
+              <Text style={{ fontSize: 12, fontWeight: '400', color: '#707070' }}>Business: {item.business.name}</Text>
+              </View>
+
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 16, paddingVertical: 20, borderRadius: 20, backgroundColor: '#EDEEF0', flexDirection: 'row', gap: 16, borderWidth: 2 , borderStyle: 'dashed', borderColor: Colors.light.tint, alignItems: 'center', marginTop: 20 }}>
+            <TouchableOpacity onPress={()=>router.push('/(businesses)/addSite')} style={{ padding: 16, paddingVertical: 20, borderRadius: 20, backgroundColor: '#EDEEF0', flexDirection: 'row', gap: 16, borderWidth: 2 , borderStyle: 'dashed', borderColor: Colors.light.tint, alignItems: 'center', marginTop: 20 }}>
               {/* <View style={{ width: 20, height: 20, borderWidth: item === location ? 4 : 2, borderColor: Colors.light.tint, borderRadius: 20, backgroundColor: item === location ? '#fff' : undefined }}></View> */}
               <PlusIcon />
               <Text style={{ fontSize: 16, fontWeight: '400' }}>Add new site</Text>
@@ -205,7 +213,10 @@ useEffect(() => {
             :
             <TouchableOpacity onPress={() => handleLocationSelect(item)} style={{ padding: 16, paddingVertical: 20, borderRadius: 20, backgroundColor: '#EDEEF0', flexDirection: 'row', gap: 16, borderWidth: item === location ? 2 : 0, borderColor: Colors.light.tint, alignItems: 'center' }}>
               <View style={{ width: 20, height: 20, borderWidth: item === location ? 4 : 2, borderColor: Colors.light.tint, borderRadius: 20, backgroundColor: item === location ? '#fff' : undefined }}></View>
+              <View>
               <Text style={{ fontSize: 16, fontWeight: '400' }}>{item.name}</Text>
+              <Text style={{ fontSize: 12, fontWeight: '400', color: '#707070' }}>Business: {item.business.name}</Text>
+              </View>
             </TouchableOpacity>}
             </>
           )}}

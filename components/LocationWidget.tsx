@@ -18,6 +18,7 @@ const LocationWidget = ({onPress, location}: LocationWidgetProps) => {
         <View style={{gap: 2}}>
             <Text style={{fontWeight: '500', fontSize: 16, color: '#6B6B6B'}}>Current Location</Text>
             <Text style={{fontWeight: '600', fontSize: 20}}>{location.name}</Text>
+            <Text style={{fontWeight: '400', fontSize: 14, color: '#707070'}}>Business: {location.business.name}</Text>
         </View>
       </View>
 

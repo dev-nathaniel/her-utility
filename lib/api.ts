@@ -10,6 +10,11 @@ export async function fetchSites() {
     return data
 }
 
+export async function fetchBusinesses() {
+    const {data} = await api.get('/businesses')
+    return data
+}
+
 export async function login(credentials: { email: string; password: string }) {
     console.log(credentials)
     const { data } = await api.post('/auth/login', credentials)
@@ -28,8 +33,20 @@ export async function signup(credentials: {fullname: string; password: string; e
     return data
 }
 
-export async function createBusiness(formData: {name: string, address: string; members: member[]}) {
+export async function createBusiness(formData: {name: string; address: string; members: member[]}) {
     const {data} = await api.post('/businesses', formData)
+    return data
+}
+
+export async function createSite(formData: {name: string; businessId: string; address: string, members?: member[]}) {
+    const {data} = await api.post('/sites', formData)
+    return data
+}
+
+export async function fetchBusinessMember(id:string, userId: string) {
+    console.log(id)
+        console.log(userId)
+    const {data} = await api.get(`/businesses/${id}/members/${userId}`)
     return data
 }
 
@@ -52,6 +69,11 @@ export async function assignRole() {
 
 export async function fetchSiteDetails(id: string) {
     const {data} = await api.get(`/sites/${id}`)
+    return data
+}
+
+export async function fetchBusiness(id:string) {
+    const {data} = await api.get(`/businesses/${id}`)
     return data
 }
 
